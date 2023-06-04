@@ -5,8 +5,9 @@
 }
 
 body {
-  height: 100vh;
-  width: 100vw;
+  height: 100%;
+  width: 100%;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
 h1 {
@@ -15,39 +16,233 @@ h1 {
 
 h2 {
   color: white;
-  background-color: black;
+  background-color: #424242;
   padding: 1vh 10vw;
 }
 
-.container--home {
-  display: grid;
-  width: 80vw;
-  justify-content: center;
-  align-items: center;
-  
+input {
+  padding: 5px;
+  margin: 2px;
 }
 
+.link--style {
+  color: white;
+  text-decoration: none;
+  word-spacing: 0.2vw;
+}
+
+.container--top__options {
+  display: flex;
+  margin: 2vh 10vw;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.container--pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 2vh 0;
+}
+
+/* SERIES AND MOVIES */
+.container {
+  display: grid;
+  width: 80%;
+  justify-content: flex-start;
+  align-items: center;
+  margin: 4vh 10vw 10vh 10vw;
+  grid-template-columns: repeat(7, 1fr);
+  row-gap: 3vh;
+}
+
+.card--container {
+  width: 100%;
+}
+
+.card--container:hover {
+  opacity: 75%;
+  border: 10px solid white;
+  cursor: pointer;
+}
+
+.card--container > img {
+  width: 90%;
+}
+
+.inputFilter--button {
+  padding: 5px;
+  background-color: #1976D2;
+  color: white;
+  cursor: pointer;
+  border: 2px solid #1976D2
+}
+
+.inputFilter--button:hover {
+  background-color: #1565C0;
+  border: 2px solid #1565C0;
+}
+
+.h6--style {
+  display: flex;
+  justify-content: flex-start;
+  color: black;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin-left: 7px;
+}
+
+/* NAVBAR */
 .nav--container {
   display: flex;
   justify-content: space-between;
-  padding: 1vh 10vw;
-  background-color: blue;
+  padding: 1.5vh 10vw;
+  background-color: #0085FE;
 }
 
 .buttons--style {
+  cursor: pointer;
   margin: 0 0.7vw;
   border: none;
-  background-color: blue;
+  background-color: #0085FE;
   color: white;
   font-size: large;
 }
 
 .buttons--style__trial {
+  cursor: pointer;
   margin: 0 0.7vw;
+  border: 0.6vh solid #424242;
   font-weight: bold;
   color: white;
-  background-color: black;
+  background-color: #424242;
   padding: 0.2vw;
 }
 
+/* FOOTER */
+.container--footer {
+  position: relative;
+  bottom: 0;
+  background-color: #1E1E1E;
+  padding: 5vh 10vw;
+}
+
+.container--footer__links {
+  color: white;
+  text-decoration: none;
+}
+
+.container--footer__icons {
+  display: grid;
+  grid-template-columns: auto auto;
+  margin-top: 3vh;
+  width: 100%;
+}
+
+.container--footer__logos {
+  width: 100%;
+}
+
+.container--footer__stores {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.footer--logo {
+  width: 50px;
+  height: 30px;
+}
+
+.footer--store {
+  width: 150px;
+  height: 40px;
+}
+
+.footer--copyright {
+  color: lightslategray;
+  margin: 2vh 0;
+}
+
+/* MODAL  */
+.modal--img {
+  width: 85%;
+}
+
+/* HOME */
+.container--home {
+  display: grid;
+  width: 80vw;
+  justify-content: flex-start;
+  align-items: center;
+  grid-template-columns: auto auto;
+  gap: 12px;
+  margin: 4vh 0 10vh 10vw;
+}
+
+.card--home {
+  display: flex;
+  background-color: #1E1E1E;
+  justify-content: center;
+  align-items: center;
+  width: 130px;
+  height: 190px;
+  margin-bottom: 10px;
+  position: relative;
+  text-align: center;
+  overflow: hidden;
+}
+
+.card--home > p {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  color: white;
+  font-weight: bold;
+  transform: translate(-50%, -50%);
+  font-size: x-large;
+}
+
+.card--home > img {
+  object-fit: cover;
+}
+
+.link--style__home {
+  color: black;
+  text-decoration: none;
+  font-size: 20px;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+
+/* RESPONSIVE */
+@media screen and (max-width: 750px) {
+  .container--footer__logos, .container--footer__stores {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+  }
+
+  .container {
+    grid-template-columns: repeat(3, auto);
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .container {
+    grid-template-columns: repeat(2, auto);
+  }
+}
+
+@media screen and (max-width: 350px) {
+  .container--home {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .container {
+    grid-template-columns: repeat(1, auto);
+  }
+}
 

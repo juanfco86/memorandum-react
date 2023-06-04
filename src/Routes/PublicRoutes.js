@@ -1,7 +1,7 @@
 import { Route, Routes } from "react-router-dom"
 import Home from "../Pages/Home"
 import Series from "../Pages/Series"
-import Films from "../Pages/Films"
+import Movies from "../Pages/Movies"
 
 const PublicRoutes = () => {
     return (
@@ -9,7 +9,7 @@ const PublicRoutes = () => {
             <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/series" element={<Series />} />
-                <Route path="/films" element={<Films />} />
+                <Route path="/movies" element={<Movies />} />
             </Routes>
         </> 
     )

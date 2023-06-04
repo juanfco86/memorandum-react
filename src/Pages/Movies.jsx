@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux'
-import { setSeriesList, setLoading, setError, setItemsPage } from '../redux/features/series/seriesSlice';
+import { setMoviesList, setLoading, setError, setItemsPage } from '../redux/features/movies/moviesSlice';
 import { useEffect, useState } from 'react';
 import { fetchList } from '../API/getApi'
 import ItemsPage from '../Components/Buttons/ItemsPage'
@@ -8,19 +8,19 @@ import InputFilter from '../Components/Inputs/InputFilter';
 import BasicModal from '../Components/Modal/Modal';
 import Button from '@mui/material/Button';
 
-const Series = () => {
-    const seriesData = useSelector(state => state.seriesSlice)
+const Movies = () => {
+    const moviesData = useSelector(state => state.moviesSlice)
     const dispatch = useDispatch();
 
     const [openId, setOpenId] = useState(null);
     const [year, setYear] = useState("2010")
     const [currentPage, setCurrentPage] = useState(1);
-    const itemsPerPage = seriesData.items
-    const totalItems = seriesData.list.length
+    const itemsPerPage = moviesData.items
+    const totalItems = moviesData.list.length
     const lastIndex = currentPage * itemsPerPage
     const firstIndex = lastIndex - itemsPerPage
 
-    const defaultImg = 'https://res.cloudinary.com/dgquecmyz/image/upload/v1685896655/serie_mrw4q5.png'
+    const defaultImg = 'https://res.cloudinary.com/dgquecmyz/image/upload/v1685896655/movie_vh8dzs.png'
 
     const handleOpen = (id) => {
         setOpenId(id.target.alt)
@@ -42,29 +42,29 @@ const Series = () => {
     }
 
     useEffect(() => {
-        fetchList(dispatch, setSeriesList, setLoading, setError, 'series', year);
+        fetchList(dispatch, setMoviesList, setLoading, setError, 'movie', year);
     }, [year, dispatch]);
 
     return (
         <>
-            <h2>Popular Series</h2>
+            <h2>Popular movies</h2>
             <div className='container--top__options'>
                 <InputFilter yearFilter={ yearFilter } />
                 <ItemsPage dispatch={ dispatch } setItemsPage={ setItemsPage } setCurrentPage={ setCurrentPage } />
             </div>
             <div className='container'>
                 {
-                    seriesData.loading ? <p>Loading...</p> : seriesData.error ? <p>Oops, something went wrong...</p> : seriesData.list.map((serie) => {
+                    moviesData.loading ? <p>Loading...</p> : moviesData.error ? <p>Oops, something went wrong...</p> : moviesData.list.map((movie) => {
                             return (
-                                <Button onClick={ handleOpen } key={ serie.title }>
+                                <Button onClick={ handleOpen } key={ movie.title }>
                                     <div className='card--container'>
-                                        <img src={ serie.images['Poster Art'].url } onError={({ currentTarget }) => {
+                                        <img src={ movie.images['Poster Art'].url } onError={({ currentTarget }) => {
                                             currentTarget.onerror = null;
                                             currentTarget.src = defaultImg
-                                        }} alt={ serie.title } />
-                                        <h6 className='h6--style'>{ serie.title }</h6>
+                                        }} alt={ movie.title } />
+                                        <h6 className='h6--style'>{ movie.title }</h6>
                                     </div>
-                                    <BasicModal title={ serie.title } description={ serie.description } img={ serie.images['Poster Art'].url } defaultImg={ defaultImg } year={ serie.releaseYear } open={ openId === serie.title } handleClose={ handleClose } />
+                                    <BasicModal title={ movie.title } description={ movie.description } img={ movie.images['Poster Art'].url } defaultImg={ defaultImg } year={ movie.releaseYear } open={ openId === movie.title } handleClose={ handleClose } />
                                 </Button>
                             )
                     }).slice(firstIndex, lastIndex)
@@ -77,4 +77,4 @@ const Series = () => {
     )
 }
 
-export default Series
+export default Movies
